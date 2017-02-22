@@ -1,72 +1,63 @@
 package com.javasuitor.brokerpoint.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javasuitor.brokerpoint.entity.Customer;
 
+@Transactional
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
-	private static List<Customer> customersList;
-	{
-		customersList = new ArrayList<Customer>();
-		customersList.add(new Customer(Long.parseLong("1001"), "Ashok", "Singh", "ashok@gmail.com", "9680406818"));
-		customersList.add(new Customer(Long.parseLong("1002"), "Devang", "Tadel", "devang@gmail.com", "9680406818"));
-		customersList.add(new Customer(Long.parseLong("1003"), "Vivek", "Khamar", "vivek@gmail.com", "9680406818"));
-		customersList.add(new Customer(Long.parseLong("1004"), "Sourabh", "Dubey", "sourabh@gmail.com", "8979034343"));
-
-	}
-
-	public Customer get(Long customerId) {
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
+	    
+	public Customer get(Integer customerId) {
 		// TODO Auto-generated method stub
-		for (Customer customer : customersList) {
-			if (customer.getCustomerId().equals(customerId)) {
-				return customer;
-			}
-		}
-		return null;
+		return hibernateTemplate.get(Customer.class, customerId);
+		
 	}
 
 	public Customer save(Customer customer) {
 		// TODO Auto-generated method stub
-		for (Customer existingCustomer : customersList) {
-			if (existingCustomer.getCustomerId() == customer.getCustomerId()) {
-				System.out.println("Customer Already Exist");
-				return null;
-			}
-		}
-		customersList.add(customer);
-		return customer;
+		Integer id = (Integer)hibernateTemplate.save(customer);
+		return get(id);
 	}
 
-	public Customer update(Long customerId, Customer customer) {
-
-		for (Customer existingCustomer : customersList) {
-			if (existingCustomer.getCustomerId() == customer.getCustomerId()) {
-				customersList.add(customer);
-				return customer;
-			}
-		}
-		return null;
+	public Customer update(Integer customerId, Customer customer) {
+       Customer existingCustomer = get(customerId);
+       if(existingCustomer != null){
+    	  existingCustomer.setFname(customer.getFname());
+    	  existingCustomer.setLname(customer.getLname());
+    	  existingCustomer.setContact(customer.getContact());
+    	  existingCustomer.setEmail(customer.getEmail());    	  
+    	  hibernateTemplate.update(existingCustomer);
+       }		 
+	   return customer;
 	}
 
-	public Long delete(Long customerId) {
-		for (Customer existingCustomer : customersList) {
-			if (existingCustomer.getCustomerId() == customerId) {
-				customersList.remove(existingCustomer);
-				return existingCustomer.getCustomerId();
-			}
-		}
-		
-		return null;
+	public Integer delete(Integer customerId) {
+		Customer c = get(customerId);
+		 if(c != null){
+			 hibernateTemplate.delete(c);
+			 return c.getCustomerId();
+		 }
+		return -1;
 	}
 
 	
  public List<Customer> getAllCustomers() {
 	// TODO Auto-generated method stub
-	return customersList;
-}
+	String hql = "From Customer order by customerId";
+	
+	@SuppressWarnings("unchecked")
+	List<Customer> customerList = (List<Customer>)hibernateTemplate.find(hql);	
+	return customerList;
+
+ }
+
+
 	
 }

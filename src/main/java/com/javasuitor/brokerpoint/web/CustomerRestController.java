@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javasuitor.brokerpoint.entity.Customer;
@@ -23,6 +22,10 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
+	
+	
+	
+	
 	@GetMapping("/customers")
 	public List<Customer> getCustomers(){
 		return customerService.getAllCustomers();
@@ -30,7 +33,7 @@ public class CustomerRestController {
 	
 	
 	@GetMapping("/customers/{id}")
-	public ResponseEntity getCustomer(@PathVariable ("id") Long customerId){		
+	public ResponseEntity getCustomer(@PathVariable ("id") Integer customerId){		
 		
 		Customer customer = customerService.get(customerId);
 		
@@ -48,7 +51,7 @@ public class CustomerRestController {
 	}
 	
 	@DeleteMapping("/customers/{id}")
-	public ResponseEntity deleteCustomer(@PathVariable ("id") Long customerId){
+	public ResponseEntity deleteCustomer(@PathVariable ("id") Integer customerId){
 		
 		if(null == customerService.delete(customerId)){
 			new ResponseEntity("No customer exist with id"+customerId , HttpStatus.NOT_FOUND);
@@ -58,7 +61,7 @@ public class CustomerRestController {
 	}
 	
 	@PutMapping("/customers/{id}")
-	public ResponseEntity updateCustomer(@PathVariable Long customerId, @RequestBody Customer customer){
+	public ResponseEntity updateCustomer(@PathVariable Integer customerId, @RequestBody Customer customer){
 	
 		customer = customerService.update(customerId, customer);
 		

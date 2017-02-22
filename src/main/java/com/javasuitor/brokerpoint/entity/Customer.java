@@ -1,19 +1,44 @@
 package com.javasuitor.brokerpoint.entity;
 
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Customer {
+@Entity
+@Table(name="customers")
+public class Customer implements Serializable{
 
-	private Long customerId;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name ="customerId")	
+	private Integer customerId;
+	
+	@Column(name ="fname")
 	private String fname;
+	@Column(name ="lname")
 	private String lname;
+	
+	@Column(name ="email")
 	private String email;
+	
+	@Column(name ="contact")
 	private String contact;
 	
 	
 	public Customer(){	}
 		
-	public Customer(Long id, String fname, String lname, String email, String contact) {
+	public Customer(Integer id, String fname, String lname, String email, String contact) {
 		super();
 		this.customerId = id;
 		this.fname = fname;
@@ -22,12 +47,12 @@ public class Customer {
 		this.contact = contact;
 	}
     
-	public Long getCustomerId() {
+	public Integer getCustomerId() {
 		return customerId;
 	}
 	
 	
-	public void setCustomerId(Long customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 	public String getFname() {
@@ -54,7 +79,6 @@ public class Customer {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-	
 		
 	
 }

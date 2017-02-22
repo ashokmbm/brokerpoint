@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerDao customerDao;
 	
-	public Customer get(Long customerId) {
+	public Customer get(Integer customerId) {
 				return customerDao.get(customerId);
 	}
 
@@ -23,12 +23,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerDao.save(customer);
 	}
 
-	public Customer update(Long customerId, Customer customer) {
+	public Customer update(Integer customerId, Customer customer) {
 		// TODO Auto-generated method stub		
 		return customerDao.update(customerId, customer);
 	}
 
-	public Long delete(Long customerId) {
+	public Integer delete(Integer customerId) {
 		// TODO Auto-generated method stub		
 		return customerDao.delete(customerId);
 	}
@@ -38,5 +38,6 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerDao.getAllCustomers();
 	}
 
+	
 	
 }
