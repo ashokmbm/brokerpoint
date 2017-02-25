@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -28,6 +29,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	            resolver.setSuffix(".jsp");
 	            return resolver;  
 	    }
+	 
+	 @Bean(name = "messageSource")
+	 public ReloadableResourceBundleMessageSource messageSource() {
+	   ReloadableResourceBundleMessageSource messageBundle = new ReloadableResourceBundleMessageSource();
+	   messageBundle.setBasename("classpath:messages/messages");
+	   messageBundle.setDefaultEncoding("UTF-8");
+	   return messageBundle;
+	 }
 	 
 	 	
 	

@@ -2,11 +2,15 @@ package com.javasuitor.brokerpoint.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javasuitor.brokerpoint.entity.Customer;
 import com.javasuitor.brokerpoint.service.CustomerService;
+import com.javasuitor.brokerpoint.validator.CustomerValidator;
 
 @RestController
 public class CustomerRestController {
@@ -22,7 +27,10 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
-	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+	    binder.setValidator(new CustomerValidator());
+	}
 	
 	
 	
@@ -45,7 +53,7 @@ public class CustomerRestController {
 	}
 	
 	@PostMapping("/customers")
-	public ResponseEntity saveCustomer(@RequestBody Customer customer ){
+	public ResponseEntity saveCustomer(@Valid @RequestBody Customer customer ){
 		return new ResponseEntity(customerService.save(customer),HttpStatus.OK);
 		
 	}

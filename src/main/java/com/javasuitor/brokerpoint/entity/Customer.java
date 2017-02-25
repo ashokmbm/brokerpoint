@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+
+
 @Entity
 @Table(name="customers")
 public class Customer implements Serializable{
@@ -21,18 +28,25 @@ public class Customer implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="customerId")	
+	@Column(name ="customerId")
+	@NotEmpty	
 	private Integer customerId;
 	
 	@Column(name ="fname")
+	@NotEmpty	
 	private String fname;
+	
 	@Column(name ="lname")
+	@NotEmpty
 	private String lname;
 	
 	@Column(name ="email")
+	@Email
+	@NotEmpty
 	private String email;
 	
 	@Column(name ="contact")
+	@NotEmpty
 	private String contact;
 	
 	
