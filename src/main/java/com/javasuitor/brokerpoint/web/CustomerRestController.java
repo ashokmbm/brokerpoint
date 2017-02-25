@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.javasuitor.brokerpoint.entity.Customer;
 import com.javasuitor.brokerpoint.service.CustomerService;
@@ -32,6 +33,10 @@ public class CustomerRestController {
 	    binder.setValidator(new CustomerValidator());
 	}
 	
+	@GetMapping("/")
+	public ModelAndView showCustomerHome(){
+		return new ModelAndView("customer_home");
+	}
 	
 	
 	@GetMapping("/customers")
