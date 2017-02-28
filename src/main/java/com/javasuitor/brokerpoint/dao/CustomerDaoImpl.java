@@ -28,14 +28,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	public Customer update(Integer customerId, Customer customer) {
        Customer existingCustomer = get(customerId);
-       if(existingCustomer != null){
-    	  existingCustomer.setFname(customer.getFname());
-    	  existingCustomer.setLname(customer.getLname());
-    	  existingCustomer.setContact(customer.getContact());
-    	  existingCustomer.setEmail(customer.getEmail());    	  
-    	  hibernateTemplate.update(existingCustomer);
-       }		 
-	   return customer;
+       	   return customer;
 	}
 
 	public Integer delete(Integer customerId) {

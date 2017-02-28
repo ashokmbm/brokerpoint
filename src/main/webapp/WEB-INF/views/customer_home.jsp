@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -63,8 +64,9 @@
 	      </tr>	
 	</table>
 	</div>
-        <script src="${pageContext.request.contextPath}/app-resources/js/lib/angular.min.js"></script>
-        <script src="${pageContext.request.contextPath}/app-resources/js/lib/angular-resource.min.js"></script>
+    <script src="${pageContext.request.contextPath}/app-resources/js/lib/angular.min.js"></script>
+    
+    <script src="${pageContext.request.contextPath}/app-resources/js/lib/angular-resource.min.js"></script>
 	<script src="${pageContext.request.contextPath}/app-resources/js/app.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/app-resources/css/style.css"/>
  </body>

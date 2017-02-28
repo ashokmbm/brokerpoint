@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -17,82 +18,96 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
-@Table(name="customers")
+@Table(name="CUSTOMER")
 public class Customer implements Serializable{
-
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="customerId")
+	@Column(name ="CUSTOMER_ID")
 	@NotEmpty	
 	private Integer customerId;
 	
-	@Column(name ="fname")
-	@NotEmpty	
-	private String fname;
 	
-	@Column(name ="lname")
+	@Column(name ="CUSTOMER_NAME")
 	@NotEmpty
-	private String lname;
+	private String name;
 	
-	@Column(name ="email")
+	@Column(name ="CUSTOMER_TIN")
 	@Email
 	@NotEmpty
-	private String email;
+	private String custoamerTin;
 	
-	@Column(name ="contact")
-	@NotEmpty
-	private String contact;
+	@Column(name ="CUSTOMER_CONTACTS")
 	
+	private String contacts;
+	
+	@OneToOne
+    @JoinColumn(name="ADDRESS_ID")
+	private Address address;
 	
 	public Customer(){	}
-		
-	public Customer(Integer id, String fname, String lname, String email, String contact) {
+
+
+	public Customer(String name, String custoamerTin, String contacts,Address address) {
 		super();
-		this.customerId = id;
-		this.fname = fname;
-		this.lname = lname;
-		this.email = email;
-		this.contact = contact;
+		this.name = name;
+		this.custoamerTin = custoamerTin;
+		this.contacts = contacts;
+		this.address = address;
 	}
-    
+
+
 	public Integer getCustomerId() {
 		return customerId;
 	}
-	
-	
+
+
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	public String getFname() {
-		return fname;
+
+
+	public String getName() {
+		return name;
 	}
-	public void setFname(String fname) {
-		this.fname = fname;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getLname() {
-		return lname;
+
+
+	public String getCustoamerTin() {
+		return custoamerTin;
 	}
-	public void setLname(String lname) {
-		this.lname = lname;
+
+
+	public void setCustoamerTin(String custoamerTin) {
+		this.custoamerTin = custoamerTin;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public String getContacts() {
+		return contacts;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
 	}
-	public String getContact() {
-		return contact;
+
+
+	public Address getAddress() {
+		return address;
 	}
-	public void setContact(String contact) {
-		this.contact = contact;
+
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-		
 	
+	
+	
+		
 }
