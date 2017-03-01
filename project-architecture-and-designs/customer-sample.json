@@ -1,0 +1,16 @@
+{
+  "customerId" : 1,
+  "name" : "Ashok Rajpurohit",
+  "custoamerTin" : "546179280998",
+  "contacts" : "9680406818, 02932256465",
+  "address" : {
+    "addressId" : 1,
+    "shopeNumber" : "303",
+    "street" : "Behind School",
+    "market" : "Clock Tower",
+    "city" : "jodhpur",
+    "district" : "jodhpur",
+    "state" : "Rajasthan",
+    "pincode" : "306401"
+  }
+}
