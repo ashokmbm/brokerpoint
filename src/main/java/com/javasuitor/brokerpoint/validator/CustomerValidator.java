@@ -17,12 +17,10 @@ public class CustomerValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors error) {
-		// TODO Auto-generated method stub
 		
 		Customer customer = (Customer) target;
-		ValidationUtils.rejectIfEmpty(error,"customerId","NotEmpty.customer.fname");
-		ValidationUtils.rejectIfEmpty(error,"customerId","NotEmpty.customer.fname");
-		ValidationUtils.rejectIfEmpty(error,"customerId","NotEmpty.customer.fname");
+		ValidationUtils.rejectIfEmpty(error,"customerId","NotEmpty.customer.name");
+		
 	}
 
 	

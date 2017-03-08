@@ -56,6 +56,7 @@ public class DBConfig {
 	    dataSource.setUrl(env.getProperty("database.url"));
 	    dataSource.setUsername(env.getProperty("database.root"));
 	    dataSource.setPassword(env.getProperty("database.password"));
+	    
 	    return dataSource;
 	}
 	
@@ -68,6 +69,7 @@ public class DBConfig {
             properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
             properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
             properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+            properties.put("javax.persistence.validation.mode", env.getProperty("javax.persistence.validation.mode"));
             return properties;        
        }	
    	

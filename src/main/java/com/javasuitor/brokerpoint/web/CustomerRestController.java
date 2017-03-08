@@ -2,25 +2,23 @@ package com.javasuitor.brokerpoint.web;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javasuitor.brokerpoint.entity.Customer;
+import com.javasuitor.brokerpoint.entity.CustomerPojo;
 import com.javasuitor.brokerpoint.service.CustomerService;
-import com.javasuitor.brokerpoint.validator.CustomerValidator;
 
 @RestController
 public class CustomerRestController {
@@ -28,11 +26,12 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
+	/*
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 	    binder.setValidator(new CustomerValidator());
 	}
-	
+	*/
 	@GetMapping("/")
 	public ModelAndView showCustomerHome(){
 		return new ModelAndView("customer_home");
@@ -57,10 +56,14 @@ public class CustomerRestController {
 		return new ResponseEntity(customer, HttpStatus.OK);
 	}
 	
-	@PostMapping("/customers")
-	public ResponseEntity saveCustomer(@Valid @RequestBody Customer customer ){
-		return new ResponseEntity(customerService.save(customer),HttpStatus.OK);
+	//@PostMapping("/customers")
+	@RequestMapping(value="/customers", method=RequestMethod.POST,  consumes=MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity saveCustomer(@RequestBody CustomerPojo customer ){
+		System.out.println(customer.getContacts());
 		
+		//return new ResponseEntity(customerService.save(customer),HttpStatus.OK);
+		
+		return null;
 	}
 	
 	@DeleteMapping("/customers/{id}")

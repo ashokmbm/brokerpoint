@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ADDRESS")
+@Table(name="Address")
 public class Address implements Serializable{
 	
 	
@@ -18,28 +18,28 @@ public class Address implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="ADDRESS_ID") 
+	@Column(name ="Address_Id") 
 	 private Integer addressId;
 	
-	@Column(name ="SHOPE_NUMBER") 
+	@Column(name ="Shope_Number") 
 	 private String shopeNumber;  
 	 
-	@Column(name ="STREET")
+	@Column(name ="Street")
 	 private String street;
 	 
-	 @Column(name ="MARKET")
+	 @Column(name ="Market")
 	 private String market;
 	 
-	 @Column(name ="CITY")
+	 @Column(name ="City")
 	 private String city; 
 	  
-	 @Column(name ="DISTRICT")
+	 @Column(name ="District")
 	 private String district;
 	 
-	 @Column(name ="STATE")
+	 @Column(name ="State")
 	 private String state;
 	
-	 @Column(name ="PINCODE")
+	 @Column(name ="Pincode")
 	 private String pincode;
 
 	public Address() {

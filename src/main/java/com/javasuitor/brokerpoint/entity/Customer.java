@@ -11,48 +11,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
-
-
 
 @Entity
-@Table(name="CUSTOMER")
+@Table(name="Customer")
 public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
+  
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="CUSTOMER_ID")
-	@NotEmpty	
+	@Column(name ="Customer_Id")
+		
 	private Integer customerId;
 	
 	
-	@Column(name ="CUSTOMER_NAME")
-	@NotEmpty
+	@Column(name ="Customer_Name")
+	
 	private String name;
 	
-	@Column(name ="CUSTOMER_TIN")
-	@Email
-	@NotEmpty
-	private String custoamerTin;
+	@Column(name ="Customer_Tin")
 	
-	@Column(name ="CUSTOMER_CONTACTS")
+	private String customerTin;
+	
+	@Column(name ="Customer_Contacts")
 	
 	private String contacts;
 	
 	@OneToOne
-    @JoinColumn(name="ADDRESS_ID")
+    @JoinColumn(name="Address_Id")
 	private Address address;
 	
 	public Customer(){	}
 
 
-	public Customer(String name, String custoamerTin, String contacts,Address address) {
+	public Customer(String name, String customerTin, String contacts,Address address) {
 		super();
 		this.name = name;
-		this.custoamerTin = custoamerTin;
+		this.customerTin = customerTin;
 		this.contacts = contacts;
 		this.address = address;
 	}
@@ -78,13 +73,13 @@ public class Customer implements Serializable{
 	}
 
 
-	public String getCustoamerTin() {
-		return custoamerTin;
+	public String getCustomerTin() {
+		return customerTin;
 	}
 
 
-	public void setCustoamerTin(String custoamerTin) {
-		this.custoamerTin = custoamerTin;
+	public void setCustomerTin(String customerTin) {
+		this.customerTin = customerTin;
 	}
 
 
@@ -106,7 +101,6 @@ public class Customer implements Serializable{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
 	
 	
 		
